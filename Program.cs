@@ -19,7 +19,7 @@ namespace ConsoleApp1
             "Welcome to Supreme Lotto👋".WriteDesigned(ConsoleColor.Red);
 
             GameConfig config = Menu.DisplayMenu();
-
+                
             List<string> winningNumbers = RandomGenerator.Generate(config, rand);
 
             List<Player> players = PlayerService.CollectPlayers(config, winningNumbers);
