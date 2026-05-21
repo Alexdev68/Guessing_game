@@ -28,7 +28,7 @@ namespace ConsoleApp1
 
             PlayerService.CollectGuesses(players, config, winningNumbers);
 
-            Console.WriteLine("\nWinning Numbers: " + string.Join(" ", winningNumbers));
+            AnsiConsole.MarkupLine($"\n[Gold1]Winning Numbers: {string.Join(" ", winningNumbers)}[/]");
 
             foreach (var player in players)
             {

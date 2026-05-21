@@ -97,7 +97,7 @@ namespace ConsoleApp1
 
                     if (player.Score >= ((config.GuessLength - 1) * 100) / config.GuessLength)
                     {
-                        AnsiConsole.MarkupLine($"[green]Congratulations {player.Name}![/] You scored {player.Score}%.");
+                        AnsiConsole.MarkupLine($"[bold green]Congratulations {player.Name}![/] [green]You scored {player.Score}%.[/]");
                         break;
                     }
                     AnsiConsole.MarkupLine($"[bold red]FAIL![/] [red]You have {config.Attempts - attempt - 1} attempts left.[/]");

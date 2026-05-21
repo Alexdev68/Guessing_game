@@ -1,4 +1,5 @@
 ﻿using Guessing_game.Models;
+using Guessing_game.UI;
 using Spectre.Console;
 using System;
 using System.Collections.Generic;
@@ -35,11 +36,11 @@ namespace Guessing_game.Services
 
             while (true)
             {
-                List<Player> passedPlayers = players .Where(p => p.Score >= passScore) .ToList();
+                List<Player> passedPlayers = players.Where(p => p.Score >= passScore).ToList();
 
                 if (passedPlayers.Count == 0)
                 {
-                    Console.WriteLine( "\nNo players passed.");
+                    AnsiConsole.MarkupLine("[red]No players passed.[/]");
 
                     return players;
                 }
@@ -55,23 +56,23 @@ namespace Guessing_game.Services
                     return players;
                 }
 
-                AnsiConsole.MarkupLine("[bold yellow]ROLLUP ACTIVATED![/]");
+                AnsiConsole.MarkupLine("\n[bold yellow]ROLLUP ACTIVATED![/]");
 
                 List<string> newWinningNumbers = RandomGenerator.Generate(config, rand);
 
-                Console.WriteLine("\nNew Winning Numbers: " + string.Join(" ", newWinningNumbers));
+                AnsiConsole.MarkupLine("\n[bold gold1]New Winning Numbers generated[/]");
 
                 foreach (Player player in topPlayers)
                 {
-                    Console.WriteLine($"\n{player.Name}, enter new guesses:");
+                    string guess = $"\n{player.Name}, enter new guesses:".promptStyle();
 
-                    player.Guesses = GuessParser.ParseGuesses(Console.ReadLine(), config);
+                    player.Guesses = GuessParser.ParseGuesses(guess, config);
 
                     player.GuessHistory.Add(player.Guesses);
 
                     Validation.ValidatePlayer(newWinningNumbers, player, config);
                 }
-
+                AnsiConsole.MarkupLine($"\n[bold gold1]New Winning Numbers were: { string.Join(" ", newWinningNumbers)}[/]");
                 players = topPlayers;
             }
         }
