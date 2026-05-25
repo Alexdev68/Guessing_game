@@ -7,9 +7,11 @@ namespace Guessing_game.UI
     {
         public static void WriteDesigned(this string text, ConsoleColor color)
         {
-            int width = 50;
+            int width = 48;
 
-            string border = new string('*', width);
+            string str = new string('═', width);
+            string topBorder = "╔" + str + "╗";
+            string bottomBorder = "╚" + str + "╝";
 
             int left = (Console.WindowWidth - width) / 2;
 
@@ -21,13 +23,13 @@ namespace Guessing_game.UI
 
             int textPadding = (innerWidth - text.Length) / 2;
 
-            string middle = "*" + text.PadLeft( text.Length + textPadding) .PadRight(innerWidth) + "*";
+            string middle = "║" + text.PadLeft( text.Length + textPadding) .PadRight(innerWidth) + "  ║";
 
             Console.ForegroundColor = color;
 
-            Console.WriteLine(pad + border);
+            Console.WriteLine(pad + topBorder);
             Console.WriteLine(pad + middle);
-            Console.WriteLine(pad + border);
+            Console.WriteLine(pad + bottomBorder);
 
             Console.ResetColor();
         }
