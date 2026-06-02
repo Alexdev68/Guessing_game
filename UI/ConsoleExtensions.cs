@@ -1,5 +1,7 @@
 ﻿using Spectre.Console;
 using System;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace Guessing_game.UI
 {
@@ -23,7 +25,7 @@ namespace Guessing_game.UI
 
             int textPadding = (innerWidth - text.Length) / 2;
 
-            string middle = "║" + text.PadLeft( text.Length + textPadding) .PadRight(innerWidth) + "  ║";
+            string middle = "║" + text.PadLeft(text.Length + textPadding).PadRight(innerWidth) + "  ║";
 
             Console.ForegroundColor = color;
 
@@ -37,6 +39,27 @@ namespace Guessing_game.UI
         public static string promptStyle(this string text)
         {
             return AnsiConsole.Prompt(new TextPrompt<string>($"[cyan]{text}[/]").PromptStyle("cyan"));
+        }
+
+        public static string Description(this Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attr = field.GetCustomAttribute<DescriptionAttribute>();
+            return attr?.Description ?? value.ToString();
+        }
+
+        public static string DisplayText(this Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attr = field.GetCustomAttribute<DisplayTextAttribute>();
+            return attr?.Text ?? value.ToString();
+        }
+
+        public static string Prompt(this Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attr = field.GetCustomAttribute<PromptAttribute>();
+            return attr?.Prompt ?? value.ToString();
         }
     }
 }

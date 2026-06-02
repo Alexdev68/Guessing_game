@@ -13,36 +13,37 @@ namespace Guessing_game.UI
             {
                 AnsiConsole.MarkupLine("\n[bold cyan]Select Game Mode:[/]");
 
-                AnsiConsole.MarkupLine("[green]1 - Easy[/]   (3 numbers, 0-20, 6 attempts)");
-                AnsiConsole.MarkupLine("[yellow]2 - Medium[/] (4 numbers, 0-50, 3 attempts)");
-                AnsiConsole.MarkupLine("[red]3 - Hard[/]   (5 mixed, 0-90, 1 attempt)");
-                AnsiConsole.MarkupLine("[magenta]4 - Random[/]");
+                AnsiConsole.MarkupLine($"[green]{(int)GameType.Easy} - ({GameType.Easy.Description()})[/]");
+                AnsiConsole.MarkupLine($"[yellow]{(int)GameType.Medium} - ({GameType.Medium.Description()})[/]");
+                AnsiConsole.MarkupLine($"[red]{(int)GameType.Hard} -  ({GameType.Hard.Description()})[/]");
+                AnsiConsole.MarkupLine($"[magenta]{(int)GameType.Random} - Random[/]");
 
                 if (!int.TryParse(Console.ReadLine(), out int choice))
                 {
                     continue;
                 }
+                GameType gameType = (GameType)choice;
 
-                switch (choice)
+                switch (gameType)
                 {
-                    case 1:
-                        AnsiConsole.MarkupLine("\n[green]Easy mode selected![/]");
-                        return GameSettings.GetConfig(GameType.Easy);
-                    case 2:
-                        AnsiConsole.MarkupLine("\n[yellow]Medium mode selected![/]");
-                        return GameSettings.GetConfig(GameType.Medium);
-                    case 3:
-                        AnsiConsole.MarkupLine("\n[red]Hard mode selected![/]");
-                        return GameSettings.GetConfig(GameType.Hard);
-                    case 4:
+                    case GameType.Easy:
+                        AnsiConsole.MarkupLine($"\n[green]{GameType.Easy.DisplayText()}[/]");
+                        return GameSettings.GetConfig(gameType);
+                    case GameType.Medium:
+                        AnsiConsole.MarkupLine($"\n[yellow]{GameType.Medium.DisplayText()}[/]");
+                        return GameSettings.GetConfig(gameType);
+                    case GameType.Hard:
+                        AnsiConsole.MarkupLine($"\n[red]{GameType.Hard.DisplayText()}[/]");
+                        return GameSettings.GetConfig(gameType);
+                    case GameType.Random:
                         int type = new Random().Next(0, 3);
 
                         if (type == 0)
-                            AnsiConsole.MarkupLine("\n[green]Random mode selected! (Easy)[/]");
+                            AnsiConsole.MarkupLine($"\n[green]{GameType.Random.DisplayText()}(Easy)[/]");
                         else if (type == 1)
-                            AnsiConsole.MarkupLine("\n[yellow]Random mode selected! (Medium)[/]");
+                            AnsiConsole.MarkupLine($"\n[yellow]{GameType.Random.DisplayText()}(Medium)[/]");
                         else
-                            AnsiConsole.MarkupLine("\n[red]Random mode selected! (Hard)[/]");
+                            AnsiConsole.MarkupLine($"\n[red]{GameType.Random.DisplayText()}(Hard)[/]");
                         return GameSettings.GetConfig((GameType) type);
                     default:
                         return null;

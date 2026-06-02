@@ -4,9 +4,15 @@
     {
         public GameType Type { get; set; }
 
+        public string color { get; set; }
+
         public int Attempts { get; set; }
 
         public int GuessLength { get; set; }
+
+        public int MinPlayers { get; set; }
+
+        public int MaxPlayers { get; set; }
 
         public int MinValue { get; set; }
 
