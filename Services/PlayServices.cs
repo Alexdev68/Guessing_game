@@ -21,7 +21,7 @@ namespace ConsoleApp1
                 AnsiConsole.MarkupLine($"[bold yellow]Enter Number of players (min {config.MinPlayers}, max {config.MaxPlayers}): [/]");
                 playerCount = Convert.ToInt32(Console.ReadLine());
 
-                if (playerCount < 2 || playerCount > 10)
+                if (playerCount < config.MinPlayers || playerCount > config.MaxPlayers)
                 {
                     AnsiConsole.MarkupLine($"[red]Number of players must be between {config.MinPlayers} and {config.MaxPlayers}[/]");
                 }
@@ -80,12 +80,7 @@ namespace ConsoleApp1
                 for (int attempt = 0; attempt < config.Attempts; attempt++)
                 {
                     AnsiConsole.MarkupLine($"[cyan]\n Attempt {attempt + 1}/{config.Attempts}[/]");
-                    if (config.Type == GameType.Easy)
-                        AnsiConsole.MarkupLine($"[yellow]{GameType.Easy.Prompt()}[/]");
-                    else if (config.Type == GameType.Medium)
-                        AnsiConsole.MarkupLine($"[yellow]{GameType.Medium.Prompt()}[/]");
-                    else
-                        AnsiConsole.MarkupLine($"[yellow]{GameType.Hard.Prompt()}[/]");
+                    AnsiConsole.MarkupLine($"[yellow]{config.Type.Prompt()}[/]");
 
                     string guess = $"[cyan]Enter {config.GuessLength} guesses: [/]".promptStyle();
 
