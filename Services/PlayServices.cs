@@ -76,6 +76,10 @@ namespace ConsoleApp1
         {
             foreach (var player in players)
             {
+                if (config.AllowAlphanumeric)
+                {
+                    
+                }
                 AnsiConsole.MarkupLine($"\n\n[bold cyan]🎲{player.Name}'s Turn[/]");
                 for (int attempt = 0; attempt < config.Attempts; attempt++)
                 {
