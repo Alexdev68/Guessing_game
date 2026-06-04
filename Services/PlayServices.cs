@@ -19,11 +19,13 @@ namespace ConsoleApp1
             while (true)
             {
                 AnsiConsole.MarkupLine($"[bold yellow]Enter Number of players (min {config.MinPlayers}, max {config.MaxPlayers}): [/]");
-                playerCount = Convert.ToInt32(Console.ReadLine());
 
-                if (playerCount < config.MinPlayers || playerCount > config.MaxPlayers)
+                if (!int.TryParse(Console.ReadLine(), out playerCount))
                 {
-                    AnsiConsole.MarkupLine($"[red]Number of players must be between {config.MinPlayers} and {config.MaxPlayers}[/]");
+                    if (playerCount < config.MinPlayers || playerCount > config.MaxPlayers)
+                    {
+                        AnsiConsole.MarkupLine($"[red]Number of players must be an integer between {config.MinPlayers} and {config.MaxPlayers}[/]");
+                    }
                 }
                 else
                     break;

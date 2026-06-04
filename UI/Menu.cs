@@ -32,15 +32,7 @@ namespace Guessing_game.UI
                 }
                 GameType gameType = (GameType)choice;
 
-                string color = gameType switch
-                {
-                    GameType.Easy => "green",
-                    GameType.Medium => "yellow",
-                    GameType.Hard => "red",
-                    _ => "white"
-                };
-
-                AnsiConsole.MarkupLine($"\n[{color}]{gameType.DisplayText()}[/]");
+                AnsiConsole.MarkupLine($"\n[{GameSettings.AllGames[gameType].color}]{gameType.DisplayText()}[/]");
                 return GameSettings.GetConfig(gameType);
             }
         }
