@@ -4,8 +4,9 @@ using Guessing_game.UI;
 using Spectre.Console;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace ConsoleApp1
+namespace Guessing_game.Services
 {
     internal static class PlayerService
     {
@@ -31,6 +32,8 @@ namespace ConsoleApp1
                     break;
             }
 
+            List<Player> profiles = JsonStorageService.LoadPlayers();
+
             AnsiConsole.MarkupLine("\n[bold cyan]         Player Registration[/]");
             AnsiConsole.MarkupLine("[bold cyan]-------------------------------------[/]");
             for (int i = 0; i < playerCount; i++)
@@ -40,20 +43,60 @@ namespace ConsoleApp1
                 if (string.IsNullOrWhiteSpace(name))
                     continue;
 
-                Player player = new Player
+                string normalizedName = name.Trim().ToLower();
+
+                Player? player = profiles.FirstOrDefault(p => p.Name.ToLower() == normalizedName);
+
+                if (player == null)
                 {
-                    Name = name,
-                    Balance = 5000
-                };
+                    player = new Player
+                    {
+                        Name = normalizedName,
+                        Balance = 5000,
+                        FirstSeen = DateTime.Now
+                    };
+
+                    profiles.Add(player);
+
+                    JsonStorageService.SavePlayers(profiles);
+                }
+                else
+                {
+                    AnsiConsole.MarkupLine($"[bold yellow]Welcome back {normalizedName}[/]");
+                    player.LastSeen = DateTime.Now;
+                    player.Score = 0;
+                    player.CorrectGuesses = 0;
+                    player.Winnings = 0;
+                    player.Guesses = Array.Empty<string>();
+                }
 
                 decimal stake = GetStake();
+
+
+                if (player.Balance < stake)
+                {
+                    AnsiConsole.MarkupLine("[bold red]Insufficient balance[/]");
+
+                    while (true)
+                    {
+                        string str = "[cyan]How much would you like to deposit:[/]".promptStyle();
+
+                        if (decimal.TryParse(str, out decimal balance))
+                        {
+                            player.Balance += balance;
+                            break;
+                        }
+
+                        AnsiConsole.MarkupLine("[bold red]Deposit must be an integer ₦" + stake + "[/]");
+                    }
+                }
 
                 player.Stake = stake;
                 player.Balance -= stake;
 
                 players.Add(player);
 
-                AnsiConsole.MarkupLine($"[green]✔️ Balance left: ₦{player.Balance}[/]");
+                AnsiConsole.MarkupLine($"[green]✔️ Balance left: \u20A6{player.Balance}[/]");
             }
 
             return players;
@@ -89,8 +132,6 @@ namespace ConsoleApp1
                     player.Guesses = GuessParser.ParseGuesses(guess, config);
 
                     Validation.ValidatePlayer(winningNumbers, player, config);
-
-                    player.GuessHistory.Add((string[])player.Guesses.Clone());
 
                     if (player.Score >= ((config.GuessLength - 1) * 100) / config.GuessLength)
                     {

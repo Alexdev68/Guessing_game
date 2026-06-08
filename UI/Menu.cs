@@ -23,6 +23,7 @@ namespace Guessing_game.UI
 
                 if (!int.TryParse(Console.ReadLine(), out int choice))
                 {
+                    AnsiConsole.MarkupLine("[bold red]Value must be an integer[/]");
                     continue;
                 }
                 if (choice == 99)

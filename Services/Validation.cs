@@ -8,13 +8,14 @@ namespace Guessing_game.Services
         public static void ValidatePlayer(List<string> winningNumbers, Player player, GameConfig config)
         {
             int matches = 0;
+            string gue;
 
             foreach (string guess in player.Guesses)
             {
-                if (winningNumbers.Contains(guess))
-                {
+                string normalized = config.AllowAlphanumeric ? guess.ToUpperInvariant() : guess;
+                
+                if (winningNumbers.Contains(normalized))
                     matches++;
-                }
             }
 
             player.CorrectGuesses = matches;

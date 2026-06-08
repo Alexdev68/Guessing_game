@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleApp1
+namespace Guessing_game
 {
     internal class BabaIjebu
     {
@@ -15,37 +15,38 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-
-            "Welcome to Supreme Lotto👋".WriteDesigned(ConsoleColor.Red);
-
-            GameConfig config = Menu.DisplayMenu();
-                
-            List<string> winningNumbers = RandomGenerator.Generate(config, rand);
-
-            List<Player> players = PlayerService.CollectPlayers(config, winningNumbers);
-
-            AnsiConsole.MarkupLine("\n\n[bold green]Game Started![/]");
-
-            PlayerService.CollectGuesses(players, config, winningNumbers);
-
-            AnsiConsole.MarkupLine($"\n[Gold1]Winning Numbers: {string.Join(" ", winningNumbers)}[/]");
-
-            foreach (var player in players)
+            while (true)
             {
-                Validation.ValidatePlayer(winningNumbers, player, config);
+                AnsiConsole.MarkupLine($"[Bold green]{new string('═', 20)}[/]");
+                AnsiConsole.MarkupLine("[green]1. Play Game[/]");
+                AnsiConsole.MarkupLine("[green]2. View History[/]");
+                AnsiConsole.MarkupLine("[green]3. Filter History[/]");
+                AnsiConsole.MarkupLine("[green]4. Replay best round[/]");
+                AnsiConsole.MarkupLine("[green]5. Exit[/]");
+                AnsiConsole.MarkupLine($"[Bold green]{new string('═', 20)}[/]");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        GameEngine.PlayGame();
+                        break;
+
+                    case "2":
+                        HistoryServices.ViewAllHistory();
+                        break;
+
+                    case "3":
+                        HistoryServices.FilterHistory();
+                        break;
+
+                    case "4":
+                        HistoryServices.ReplayBestRound();
+                        break;
+
+                    case "5":
+                        return;
+                }
             }
-
-            if (config.AllowRollup)
-            {
-                players = ScoreManager.HandleRollup(players, config, rand);
-            }
-
-            ScoreManager.CalculateWinnings(players, config);
-
-            LeaderBoard board = new();
-            board.Display(players);
-
-            "Thanks for playing!🙏".WriteDesigned(ConsoleColor.Green);
         }
     }
 }

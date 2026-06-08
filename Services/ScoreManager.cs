@@ -68,8 +68,6 @@ namespace Guessing_game.Services
 
                     player.Guesses = GuessParser.ParseGuesses(guess, config);
 
-                    player.GuessHistory.Add(player.Guesses);
-
                     Validation.ValidatePlayer(newWinningNumbers, player, config);
                 }
                 AnsiConsole.MarkupLine($"\n[bold gold1]New Winning Numbers were: { string.Join(" ", newWinningNumbers)}[/]");

@@ -16,7 +16,7 @@ namespace Guessing_game.Models
 
         [Description("Hard mode: 5 mixed numbers, 0-90, 1 attempt")]
         [DisplayText("Hard mode selected!")]
-        [Prompt("Enter 5 numbers between 0 and 100, separated by spaces")]
+        [Prompt("Enter 5 numbers between 0 and 100 and single letters, separated by spaces")]
         Hard = 3,
 
         [Description("Random mode: Randomly selects one of the above modes")]
