@@ -1,4 +1,5 @@
 ﻿using Guessing_game.Models;
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
@@ -18,8 +19,10 @@ namespace Guessing_game.Services
             string json = File.ReadAllText(PlayersFile);
 
             if (string.IsNullOrWhiteSpace(json))
+            {
+                AnsiConsole.MarkupLine("[bold red]NO history available, file is empty[/]");
                 return new List<Player>();
-
+            }
 
             return JsonSerializer.Deserialize<List<Player>>(json) ?? new List<Player>();
         }
@@ -39,7 +42,10 @@ namespace Guessing_game.Services
             string json = File.ReadAllText(HistoryFile);
 
             if (string.IsNullOrWhiteSpace(json))
+            {
+                AnsiConsole.MarkupLine("[bold red]NO history available, file is empty[/]");
                 return new List<GameRecord>();
+            }
 
             return JsonSerializer.Deserialize<List<GameRecord>>(json)
                    ?? new List<GameRecord>();
