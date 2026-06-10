@@ -17,9 +17,7 @@ namespace Guessing_game
 
             GameConfig config = Menu.DisplayMenu();
 
-            List<string> winningNumbers = RandomGenerator.Generate(config, rand);
-
-            Console.WriteLine($"{string.Join(", ", winningNumbers)}");
+            List<string> winningNumbers = RandomGenerator.Generate(config, rand);;
 
             List<Player> players = PlayerService.CollectPlayers(config, winningNumbers);
 

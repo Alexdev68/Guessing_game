@@ -1,0 +1,44 @@
+[
+  {
+    "GameId": "6032ca46-1fe6-45c2-b77b-def6b4244544",
+    "TimeStamp": "2026-06-10T11:57:37.996535+01:00",
+    "WinningNumbers": "44, 36, I, L, A",
+    "Players": [
+      {
+        "Name": "bob",
+        "Guesses": [
+          "36, 44, i, l, a"
+        ],
+        "Score": 0
+      },
+      {
+        "Name": "mat",
+        "Guesses": [
+          "0, 23, i, l, a"
+        ],
+        "Score": 0
+      }
+    ]
+  },
+  {
+    "GameId": "f4e7122e-e7d0-43b3-a873-d5aba9bf9227",
+    "TimeStamp": "2026-06-10T12:00:54.5297068+01:00",
+    "WinningNumbers": "P, G, E, U, 9",
+    "Players": [
+      {
+        "Name": "bob",
+        "Guesses": [
+          "p, e, g, 9, u"
+        ],
+        "Score": 100
+      },
+      {
+        "Name": "mat",
+        "Guesses": [
+          "0, 1, 7, 89, e"
+        ],
+        "Score": 20
+      }
+    ]
+  }
+]

@@ -41,9 +41,21 @@ namespace Guessing_game.Services
                 string name = "\nEnter player name: ".promptStyle();
 
                 if (string.IsNullOrWhiteSpace(name))
+                {
+                    i--;
                     continue;
+                }
 
                 string normalizedName = name.Trim().ToLower();
+
+
+                if (players.Any(p => p.Name.ToLower() == normalizedName))
+                {
+                    AnsiConsole.MarkupLine($"[red]Player '{normalizedName}' already entered. Choose a different name.[/]");
+                    i--;
+                    continue;
+                }
+
 
                 Player? player = profiles.FirstOrDefault(p => p.Name.ToLower() == normalizedName);
 

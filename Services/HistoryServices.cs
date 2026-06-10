@@ -47,6 +47,12 @@ namespace Guessing_game.Services
 
             var filtered = history.Where(g => g.TimeStamp.Date >= start.Date && g.TimeStamp.Date <= end.Date);
 
+            if ( filtered == null)
+            {
+                AnsiConsole.MarkupLine($"[bold red]Date entered does not exist in the history[/]");
+                return;
+            }
+
             foreach  (var game in filtered)
             {
                 Console.WriteLine();
