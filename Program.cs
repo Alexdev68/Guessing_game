@@ -28,18 +28,22 @@ namespace Guessing_game
                 switch (Console.ReadLine())
                 {
                     case "1":
+                        Console.Clear();
                         GameEngine.PlayGame();
                         break;
 
                     case "2":
+                        Console.Clear();
                         HistoryServices.ViewAllHistory();
                         break;
 
                     case "3":
+                        Console.Clear();
                         HistoryServices.FilterHistory();
                         break;
 
                     case "4":
+                        Console.Clear();
                         HistoryServices.ReplayBestRound();
                         break;
 
