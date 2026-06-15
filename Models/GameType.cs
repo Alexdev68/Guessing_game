@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Guessing_game.UI;
 
 namespace Guessing_game.Models
 {

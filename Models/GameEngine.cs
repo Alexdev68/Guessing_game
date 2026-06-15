@@ -1,12 +1,11 @@
-﻿using Guessing_game.Models;
-using Guessing_game.Services;
+﻿using Guessing_game.Services;
 using Guessing_game.UI;
 using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Guessing_game
+namespace Guessing_game.Models
 {
     internal static class GameEngine
     {
@@ -17,8 +16,7 @@ namespace Guessing_game
 
             GameConfig config = Menu.DisplayMenu();
 
-            //List<string> winningNumbers = RandomGenerator.Generate(config, rand);
-            List<string> winningNumbers = ["13", "13", "16"];
+            List<string> winningNumbers = RandomGenerator.Generate(config, rand);
 
             List<Player> players = PlayerService.CollectPlayers(config, winningNumbers);
 

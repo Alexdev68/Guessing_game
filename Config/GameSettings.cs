@@ -52,7 +52,7 @@ namespace Guessing_game.Config
                     MinPlayers = 2,
                     MaxPlayers = 10,
                     MinValue = 0,
-                    MaxValue = 90,
+                    MaxValue = 100,
                     Multiplier = 10000,
                     AllowDuplicates = true,
                     AllowRollup = true,

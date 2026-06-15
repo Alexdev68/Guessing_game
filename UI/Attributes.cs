@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Guessing_game
+namespace Guessing_game.UI
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class DisplayTextAttribute : Attribute

@@ -4,6 +4,7 @@ using Guessing_game.UI;
 using Spectre.Console;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace Guessing_game.Services
@@ -58,26 +59,6 @@ namespace Guessing_game.Services
 
                 Player? player = profiles.FirstOrDefault(p => p.Name.ToLower() == normalizedName);
 
-                decimal stake = GetStake();
-
-                if (player.Balance < stake)
-                {
-                    AnsiConsole.MarkupLine("[bold red]Insufficient balance[/]");
-
-                    while (true)
-                    {
-                        string str = "[cyan]How much would you like to deposit:[/]".promptStyle();
-
-                        if (decimal.TryParse(str, out decimal balance))
-                        {
-                            player.Balance += balance;
-                            break;
-                        }
-
-                        AnsiConsole.MarkupLine("[bold red]Deposit must be an integer ₦" + stake + "[/]");
-                    }
-                }
-
                 if (player == null)
                 {
                     player = new Player
@@ -99,6 +80,27 @@ namespace Guessing_game.Services
                     player.CorrectGuesses = 0;
                     player.Winnings = 0;
                     player.Guesses = Array.Empty<string>();
+                }
+
+
+                decimal stake = GetStake();
+
+                if (player.Balance < stake)
+                {
+                    AnsiConsole.MarkupLine("[bold red]Insufficient balance[/]");
+
+                    while (true)
+                    {
+                        string str = "[cyan]How much would you like to deposit:[/]".promptStyle();
+
+                        if (decimal.TryParse(str, out decimal balance))
+                        {
+                            player.Balance += balance;
+                            break;
+                        }
+
+                        AnsiConsole.MarkupLine("[bold red]Deposit must be an integer ₦" + stake + "[/]");
+                    }
                 }
 
                 player.Stake = stake;
@@ -129,12 +131,13 @@ namespace Guessing_game.Services
 
         public static void CollectGuesses(List<Player> players, GameConfig config, List<string> winningNumbers)
         {
-            foreach (var player in players)
+            for (int attempt = 0; attempt < config.Attempts; attempt++)
             {
-                AnsiConsole.MarkupLine($"\n\n[bold cyan]🎲{player.Name}'s Turn[/]");
-                for (int attempt = 0; attempt < config.Attempts; attempt++)
+                Console.Clear();
+                $"Round {attempt + 1}".WriteDesigned(ConsoleColor.Blue);
+                foreach (var player in players)
                 {
-                    AnsiConsole.MarkupLine($"[cyan]\n Attempt {attempt + 1}/{config.Attempts}[/]");
+                    AnsiConsole.MarkupLine($"\n\n[bold cyan]🎲{player.Name}'s Turn[/]");
                     AnsiConsole.MarkupLine($"[yellow]{config.Type.Prompt()}[/]");
 
                     string guess = $"[cyan]Enter {config.GuessLength} guesses: [/]".promptStyle();
@@ -148,8 +151,9 @@ namespace Guessing_game.Services
                         AnsiConsole.MarkupLine($"[bold green]Congratulations {player.Name}![/] [green]You scored {player.Score}%.[/]");
                         break;
                     }
-                    AnsiConsole.MarkupLine($"[bold red]FAIL![/] [red]You have {config.Attempts - attempt - 1} attempts left.[/]");
+                    AnsiConsole.MarkupLine($"[bold red]FAIL![/] [red]You have failed guess correctly.[/]");
                 }
+                Thread.Sleep(120);
             }
         }
     }
