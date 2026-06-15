@@ -17,7 +17,8 @@ namespace Guessing_game
 
             GameConfig config = Menu.DisplayMenu();
 
-            List<string> winningNumbers = RandomGenerator.Generate(config, rand);;
+            //List<string> winningNumbers = RandomGenerator.Generate(config, rand);
+            List<string> winningNumbers = ["13", "13", "16"];
 
             List<Player> players = PlayerService.CollectPlayers(config, winningNumbers);
 
@@ -26,11 +27,6 @@ namespace Guessing_game
             PlayerService.CollectGuesses(players, config, winningNumbers);
 
             AnsiConsole.MarkupLine($"\n[Gold1]Winning Numbers: {string.Join(" ", winningNumbers)}[/]");
-
-            foreach (var player in players)
-            {
-                Validation.ValidatePlayer(winningNumbers, player, config);
-            }
 
             if (config.AllowRollup)
             {

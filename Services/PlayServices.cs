@@ -56,8 +56,27 @@ namespace Guessing_game.Services
                     continue;
                 }
 
-
                 Player? player = profiles.FirstOrDefault(p => p.Name.ToLower() == normalizedName);
+
+                decimal stake = GetStake();
+
+                if (player.Balance < stake)
+                {
+                    AnsiConsole.MarkupLine("[bold red]Insufficient balance[/]");
+
+                    while (true)
+                    {
+                        string str = "[cyan]How much would you like to deposit:[/]".promptStyle();
+
+                        if (decimal.TryParse(str, out decimal balance))
+                        {
+                            player.Balance += balance;
+                            break;
+                        }
+
+                        AnsiConsole.MarkupLine("[bold red]Deposit must be an integer ₦" + stake + "[/]");
+                    }
+                }
 
                 if (player == null)
                 {
@@ -80,27 +99,6 @@ namespace Guessing_game.Services
                     player.CorrectGuesses = 0;
                     player.Winnings = 0;
                     player.Guesses = Array.Empty<string>();
-                }
-
-                decimal stake = GetStake();
-
-
-                if (player.Balance < stake)
-                {
-                    AnsiConsole.MarkupLine("[bold red]Insufficient balance[/]");
-
-                    while (true)
-                    {
-                        string str = "[cyan]How much would you like to deposit:[/]".promptStyle();
-
-                        if (decimal.TryParse(str, out decimal balance))
-                        {
-                            player.Balance += balance;
-                            break;
-                        }
-
-                        AnsiConsole.MarkupLine("[bold red]Deposit must be an integer ₦" + stake + "[/]");
-                    }
                 }
 
                 player.Stake = stake;
