@@ -79,7 +79,7 @@ namespace Guessing_game.Services
                     player.Score = 0;
                     player.CorrectGuesses = 0;
                     player.Winnings = 0;
-                    player.Guesses = Array.Empty<string>();
+                    player.Guesses = new List<string>();
                 }
 
 
@@ -137,23 +137,26 @@ namespace Guessing_game.Services
                 $"Round {attempt + 1}".WriteDesigned(ConsoleColor.Blue);
                 foreach (var player in players)
                 {
+                    if (player.CorrectGuesses >= config.GuessLength - 1)
+                        continue;
+
                     AnsiConsole.MarkupLine($"\n\n[bold cyan]🎲{player.Name}'s Turn[/]");
                     AnsiConsole.MarkupLine($"[yellow]{config.Type.Prompt()}[/]");
 
                     string guess = $"[cyan]Enter {config.GuessLength} guesses: [/]".promptStyle();
 
-                    player.Guesses = GuessParser.ParseGuesses(guess, config);
+                    player.Guesses.Add(GuessParser.ParseGuesses(guess, config));
 
                     Validation.ValidatePlayer(winningNumbers, player, config);
 
                     if (player.Score >= ((config.GuessLength - 1) * 100) / config.GuessLength)
                     {
                         AnsiConsole.MarkupLine($"[bold green]Congratulations {player.Name}![/] [green]You scored {player.Score}%.[/]");
-                        break;
                     }
-                    AnsiConsole.MarkupLine($"[bold red]FAIL![/] [red]You have failed guess correctly.[/]");
+                    else
+                        AnsiConsole.MarkupLine($"[bold red]FAIL![/] [red]You have failed guess correctly.[/]");
                 }
-                Thread.Sleep(120);
+                Thread.Sleep(300);
             }
         }
     }

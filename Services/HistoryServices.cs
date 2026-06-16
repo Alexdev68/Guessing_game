@@ -68,7 +68,7 @@ namespace Guessing_game.Services
 
                     foreach (var guess in player.Guesses)
                     {
-                        AnsiConsole.MarkupLine($"[green]{string.Join(", ", guess)}[/]");
+                        AnsiConsole.MarkupLine($"[green]{Markup.Escape(guess)}[/]");
                     }
                 }
             }
@@ -119,7 +119,7 @@ namespace Guessing_game.Services
 
                 foreach (var guess in player.Guesses)
                 {
-                    AnsiConsole.MarkupLine($"[gold1]{string.Join(", ", guess)}[/]");
+                    AnsiConsole.MarkupLine($"[gold1]{Markup.Escape(guess)}[/]");
                 }
             }
 

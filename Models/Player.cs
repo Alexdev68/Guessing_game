@@ -6,8 +6,7 @@ namespace Guessing_game.Models
     {
         public string Name { get; set; }
 
-        [JsonIgnore]
-        public string[] Guesses { get; set; }
+        public List<string> Guesses { get; set; } = new List<string>();
 
         public int CorrectGuesses { get; set; }
 

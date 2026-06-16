@@ -18,6 +18,8 @@ namespace Guessing_game.Models
 
             List<string> winningNumbers = RandomGenerator.Generate(config, rand);
 
+            Console.WriteLine($"\n{string.Join(", ", winningNumbers)}");
+
             List<Player> players = PlayerService.CollectPlayers(config, winningNumbers);
 
             AnsiConsole.MarkupLine("\n\n[bold green]Game Started![/]");
@@ -67,7 +69,7 @@ namespace Guessing_game.Models
                 {
                     Name = p.Name,
                     Score = p.Score,
-                    Guesses = new List<string> { string.Join(", ", p.Guesses) }
+                    Guesses = new List<string>(p.Guesses)
                 });
             }
 

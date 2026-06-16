@@ -8,7 +8,7 @@ namespace Guessing_game.Services
 {
     internal class GuessParser
     {
-        public static string[] ParseGuesses(string input, GameConfig config)
+        public static string ParseGuesses(string input, GameConfig config)
         {
             while (true)
             {
@@ -58,7 +58,7 @@ namespace Guessing_game.Services
                 }
 
                 if (valid)
-                    return guesses;
+                    return string.Join(", ", guesses);
 
                 input = "[red]Invalid input. Try again: [/]".promptStyle();
             }

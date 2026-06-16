@@ -8,8 +8,14 @@ namespace Guessing_game.Services
         public static void ValidatePlayer(List<string> winningNumbers, Player player, GameConfig config)
         {
             int matches = 0;
-            List<string> guesses = player.Guesses.ToList();
             var sourceCounts = new Dictionary<string, int>(winningNumbers.Count);
+
+            if (player.Guesses.Count == 0)
+                return;
+
+            string lastGuess = player.Guesses.Last();
+
+            List<string> guesses = lastGuess.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(g => g.Trim()).ToList();
 
             foreach (string item in winningNumbers)
             {
@@ -25,12 +31,12 @@ namespace Guessing_game.Services
 
             foreach (string guess in guesses)
             {
-                string normalized = config.AllowAlphanumeric ? guess.ToUpperInvariant() : guess;
+                string key = config.AllowAlphanumeric ? guess.ToUpperInvariant() : guess;
 
-                if (sourceCounts.TryGetValue(guess, out int count) && count > 0)
+                if (sourceCounts.TryGetValue(key, out int count) && count > 0)
                 {
                     matches++;
-                    sourceCounts[guess] = count - 1;
+                    sourceCounts[key] = count - 1;
                 }
             }
 

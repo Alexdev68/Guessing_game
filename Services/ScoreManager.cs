@@ -66,7 +66,7 @@ namespace Guessing_game.Services
                 {
                     string guess = $"\n{player.Name}, enter new guesses:".promptStyle();
 
-                    player.Guesses = GuessParser.ParseGuesses(guess, config);
+                    player.Guesses.Add(GuessParser.ParseGuesses(guess, config));
 
                     Validation.ValidatePlayer(newWinningNumbers, player, config);
                 }
