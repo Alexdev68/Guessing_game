@@ -30,7 +30,7 @@ namespace Guessing_game
                     case "1":
                         Console.Clear();
                         GameEngine.PlayGame();
-                        AnsiConsole.Markup("\n[cyan]Press any key to display menu[/]");
+                        AnsiConsole.Markup("\n[cyan]Press any key to display menu . . .[/]");
                         Console.ReadKey(true);
                         Console.Clear();
                         break;
@@ -38,7 +38,7 @@ namespace Guessing_game
                     case "2":
                         Console.Clear();
                         HistoryServices.ViewAllHistory();
-                        AnsiConsole.Markup("\n[cyan]Press any key to display menu[/]");
+                        AnsiConsole.Markup("\n[cyan]Press any key to display menu . . .[/]");
                         Console.ReadKey(true);
                         Console.Clear();
                         break;
@@ -46,7 +46,7 @@ namespace Guessing_game
                     case "3":
                         Console.Clear();
                         HistoryServices.FilterHistory();
-                        AnsiConsole.Markup("\n[cyan]Press any key to display menu[/]");
+                        AnsiConsole.Markup("\n[cyan]Press any key to display menu . . .[/]");
                         Console.ReadKey(true);
                         Console.Clear();
                         break;
@@ -54,7 +54,7 @@ namespace Guessing_game
                     case "4":
                         Console.Clear();
                         HistoryServices.ReplayBestRound();
-                        AnsiConsole.Markup("\n[cyan]Press any key to display menu[/]");
+                        AnsiConsole.Markup("\n[cyan]Press any key to display menu . . .[/]");
                         Console.ReadKey(true);
                         Console.Clear();
                         break;

@@ -134,7 +134,7 @@ namespace Guessing_game.Services
             for (int attempt = 0; attempt < config.Attempts; attempt++)
             {
                 Console.Clear();
-                $"Round {attempt + 1}".WriteDesigned(ConsoleColor.Blue);
+                $"Round {attempt + 1} of {config.Attempts}".WriteDesigned(ConsoleColor.Blue);
                 foreach (var player in players)
                 {
                     if (player.CorrectGuesses >= config.GuessLength - 1)
@@ -154,7 +154,7 @@ namespace Guessing_game.Services
                         AnsiConsole.MarkupLine($"[bold green]Congratulations {player.Name}![/] [green]You scored {player.Score}%.[/]");
                     }
                     else
-                        AnsiConsole.MarkupLine($"[bold red]FAIL![/] [red]You have failed guess correctly.[/]");
+                        AnsiConsole.MarkupLine($"[bold red]FAIL![/] [red]You have failed to guess correctly.[/]");
                 }
                 Thread.Sleep(300);
             }

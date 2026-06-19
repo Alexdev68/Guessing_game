@@ -2,17 +2,17 @@
   {
     "Name": "tom",
     "Guesses": [],
-    "CorrectGuesses": 0,
-    "Score": 0,
+    "CorrectGuesses": 1,
+    "Score": 20,
     "Winnings": 0,
-    "Balance": 500,
-    "GamesPlayed": 3,
+    "Balance": 1500,
+    "GamesPlayed": 6,
     "TotalWins": 0,
-    "BestScore": 0,
-    "TotalScore": 0,
-    "AverageScore": 0,
+    "BestScore": 20,
+    "TotalScore": 40,
+    "AverageScore": 6.666666666666667,
     "FirstSeen": "2026-06-16T11:54:30.0745414+01:00",
-    "LastSeen": "2026-06-16T12:15:15.1569796+01:00"
+    "LastSeen": "2026-06-18T15:46:46.5089067+01:00"
   },
   {
     "Name": "gwen",
@@ -21,13 +21,13 @@
     "Score": 0,
     "Winnings": 0,
     "Balance": 0,
-    "GamesPlayed": 3,
+    "GamesPlayed": 6,
     "TotalWins": 0,
     "BestScore": 0,
     "TotalScore": 0,
     "AverageScore": 0,
     "FirstSeen": "2026-06-16T11:54:35.2280314+01:00",
-    "LastSeen": "2026-06-16T12:15:15.1569825+01:00"
+    "LastSeen": "2026-06-18T15:46:46.5089171+01:00"
   },
   {
     "Name": "bob",
@@ -36,13 +36,13 @@
     "Score": 100,
     "Winnings": 1125000,
     "Balance": 1126500,
-    "GamesPlayed": 2,
-    "TotalWins": 1,
+    "GamesPlayed": 5,
+    "TotalWins": 4,
     "BestScore": 100,
-    "TotalScore": 100,
-    "AverageScore": 50,
+    "TotalScore": 400,
+    "AverageScore": 80,
     "FirstSeen": "2026-06-16T12:01:25.8247296+01:00",
-    "LastSeen": "2026-06-16T12:15:15.1569826+01:00"
+    "LastSeen": "2026-06-18T15:46:46.5089174+01:00"
   },
   {
     "Name": "ken",
@@ -51,13 +51,13 @@
     "Score": 0,
     "Winnings": 0,
     "Balance": 2000,
-    "GamesPlayed": 2,
+    "GamesPlayed": 5,
     "TotalWins": 0,
     "BestScore": 0,
     "TotalScore": 0,
     "AverageScore": 0,
     "FirstSeen": "2026-06-16T12:01:31.7548975+01:00",
-    "LastSeen": "2026-06-16T12:15:15.1569833+01:00"
+    "LastSeen": "2026-06-18T15:46:46.5089191+01:00"
   },
   {
     "Name": "nate",
@@ -66,12 +66,72 @@
     "Score": 75,
     "Winnings": 562500,
     "Balance": 567000,
-    "GamesPlayed": 1,
+    "GamesPlayed": 4,
     "TotalWins": 0,
     "BestScore": 75,
-    "TotalScore": 75,
+    "TotalScore": 300,
     "AverageScore": 75,
     "FirstSeen": "2026-06-16T12:14:18.8394458+01:00",
-    "LastSeen": "2026-06-16T12:15:15.1569834+01:00"
+    "LastSeen": "2026-06-18T15:46:46.5089194+01:00"
+  },
+  {
+    "Name": "max",
+    "Guesses": [],
+    "CorrectGuesses": 0,
+    "Score": 0,
+    "Winnings": 0,
+    "Balance": 1000,
+    "GamesPlayed": 3,
+    "TotalWins": 0,
+    "BestScore": 0,
+    "TotalScore": 0,
+    "AverageScore": 0,
+    "FirstSeen": "2026-06-16T14:34:05.4230831+01:00",
+    "LastSeen": "2026-06-18T15:46:46.5089196+01:00"
+  },
+  {
+    "Name": "ben",
+    "Guesses": [],
+    "CorrectGuesses": 0,
+    "Score": 0,
+    "Winnings": 0,
+    "Balance": 1500,
+    "GamesPlayed": 3,
+    "TotalWins": 0,
+    "BestScore": 25,
+    "TotalScore": 25,
+    "AverageScore": 8.333333333333334,
+    "FirstSeen": "2026-06-16T14:34:11.63841+01:00",
+    "LastSeen": "2026-06-18T15:46:46.5089198+01:00"
+  },
+  {
+    "Name": "tim",
+    "Guesses": [],
+    "CorrectGuesses": 1,
+    "Score": 25,
+    "Winnings": 0,
+    "Balance": 2000,
+    "GamesPlayed": 1,
+    "TotalWins": 0,
+    "BestScore": 25,
+    "TotalScore": 25,
+    "AverageScore": 25,
+    "FirstSeen": "2026-06-18T15:45:30.5813312+01:00",
+    "LastSeen": "2026-06-18T15:46:46.5089201+01:00"
+  },
+  {
+    "Name": "jon",
+    "Guesses": [],
+    "CorrectGuesses": 0,
+    "Score": 0,
+    "Winnings": 0,
+    "Balance": 1000,
+    "GamesPlayed": 1,
+    "TotalWins": 0,
+    "BestScore": 0,
+    "TotalScore": 0,
+    "AverageScore": 0,
+    "FirstSeen": "2026-06-18T15:45:36.520272+01:00",
+    "LastSeen": "2026-06-18T15:46:46.5089203+01:00"
   }
 ]
